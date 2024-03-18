@@ -19,27 +19,27 @@ public class CarControllerAI : Agent
  
     private void Start()
     {
-        // trackCheckpointManager.OnPlayerCorrectCheckpoint += CheckpointTracker_OnCorrectCheckpoint;
-        // trackCheckpointManager.OnPlayerWrongCheckpoint += CheckpointTracker_OnWrongCheckpoint;
+        trackCheckpointManager.OnPlayerCorrectCheckpoint += CheckpointTracker_OnCorrectCheckpoint;
+        trackCheckpointManager.OnPlayerWrongCheckpoint += CheckpointTracker_OnWrongCheckpoint;
     }
  
-    // private void CheckpointTracker_OnCorrectCheckpoint(object Sender, TrackCheckpointManager.CarCheckPointEventArgs e)
-    // {
-    //     //Debug.Log(e.carTransform.gameObject.name);
-    //     if (e.carTransform == transform)
-    //     {
-    //         AddReward(1f);
-    //     }
-    // }
+    private void CheckpointTracker_OnCorrectCheckpoint(object Sender, TrackCheckpointManager.CarCheckPointEventArgs e)
+    {
+        //Debug.Log(e.carTransform.gameObject.name);
+        if (e.carTransform == transform)
+        {
+            AddReward(1f);
+        }
+    }
  
-    // private void CheckpointTracker_OnWrongCheckpoint(object Sender, TrackCheckpointManager.CarCheckPointEventArgs e)
-    // {
-    //     //Debug.Log(e.carTransform.gameObject.name);
-    //     if (e.carTransform == transform)
-    //     {
-    //         AddReward(-1f);
-    //     }
-    // }
+    private void CheckpointTracker_OnWrongCheckpoint(object Sender, TrackCheckpointManager.CarCheckPointEventArgs e)
+    {
+        //Debug.Log(e.carTransform.gameObject.name);
+        if (e.carTransform == transform)
+        {
+            AddReward(-1f);
+        }
+    }
  
     public override void OnEpisodeBegin()
     {
@@ -93,7 +93,7 @@ public class CarControllerAI : Agent
         }
  
         transform.position += transform.forward * forwardAction * carController.vehicleSpeed * Time.deltaTime;
-        transform.Rotate(transform.up, steeringAction * carController.vehicleSteeringAngle * Time.deltaTime);
+        transform.Rotate(0f, steeringAction * carController.vehicleSteeringAngle * Time.deltaTime,0f);
     }
  
     public override void Heuristic(in ActionBuffers actionsOut)

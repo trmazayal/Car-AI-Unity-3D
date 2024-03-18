@@ -17,23 +17,7 @@ public class TrackCheckpointManager : MonoBehaviour
        
     private void Awake()
     {
-        Transform CheckpointTransforms = transform.Find("Checkpoint");
- 
-        checkpointList = new List<Checkpoint>();
- 
-        foreach (Transform CheckpointTransform in CheckpointTransforms)
-        {
-            Debug.Log(CheckpointTransform);
-            Checkpoint checkpoint = CheckpointTransform.GetComponent<Checkpoint>();
-            checkpoint.SetCurrentCheckpoint(this);
-            checkpointList.Add(checkpoint);
- 
-            nextCheckpointIndexList = new List<int>();
-            foreach (Transform racerTransform in RacersTransformList)
-            {
-                nextCheckpointIndexList.Add(0);
-            }
-        }
+        checkpointList = new List<Checkpoint>(GetComponentsInChildren<Checkpoint>());
     }
  
     public void CarPassedCheckpoint(Checkpoint checkpoint, Transform racerTransform)
