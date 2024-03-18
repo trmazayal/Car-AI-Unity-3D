@@ -7,10 +7,13 @@ public class CarController : MonoBehaviour
     private const string HORIZONTAL_MOTION = "Horizontal";
     private const string VERTICAL_MOTION = "Vertical";
 
+    private SpawnPointManager _spawnPointManager;
     public float vehicleSpeed;
 
     public float horizontalInput;
     public float verticalInput;
+
+    public Rigidbody rb;
  
     public bool bIsVehicleBraking;
     public float currentBrakingForce;
@@ -32,7 +35,11 @@ public class CarController : MonoBehaviour
     [SerializeField] private Transform RearLeftWheelTransform;
  
  
- 
+   public void Awake()
+   {
+      _spawnPointManager = FindObjectOfType<SpawnPointManager>();
+   }
+    
     private void FixedUpdate()
     {
         GetMovementInput();
@@ -103,5 +110,13 @@ public class CarController : MonoBehaviour
         wheelTransform.rotation = wheelrotation;
  
     }
+   
+   public void Respawn()
+   {
+      Vector3 pos = _spawnPointManager.SelectRandomSpawnpoint();
+      rb.MovePosition(pos);
+      transform.position = pos - new Vector3(0, 0.4f, 0);
+   }
+
 }
  

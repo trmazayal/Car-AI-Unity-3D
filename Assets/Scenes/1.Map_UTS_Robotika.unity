@@ -7157,8 +7157,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3858c192aef9b07468e1fad674402778, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  RacersTransformList:
-  - {fileID: 5587235518497212414}
+  RacersTransformList: []
 --- !u!1 &2028275195
 GameObject:
   m_ObjectHideFlags: 0
@@ -10592,8 +10591,8 @@ MonoBehaviour:
     NumStackedVectorObservations: 1
     m_ActionSpec:
       m_NumContinuousActions: 0
-      BranchSizes: 0300000003000000
-    VectorActionSize: 0300000003000000
+      BranchSizes: 0100000001000000
+    VectorActionSize: 0100000001000000
     VectorActionDescriptions: []
     VectorActionSpaceType: 0
     hasUpgradedBrainParametersWithActionSpec: 1
